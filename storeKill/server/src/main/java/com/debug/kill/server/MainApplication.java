@@ -1,9 +1,11 @@
 package com.debug.kill.server;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * @author User
@@ -13,6 +15,8 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  * @date 2020/6/28 22:44
  */
 @SpringBootApplication
+@ImportResource(value = {"classpath:spring/spring-jdbc.xml"})
+@MapperScan(basePackages = "com.debug.kill.model.mapper")
 public class MainApplication extends SpringBootServletInitializer {
 
 
