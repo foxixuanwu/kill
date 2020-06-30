@@ -16,4 +16,7 @@ public interface IItemService {
    //获取待秒杀商品列表
    List<ItemKill> getKillItems() throws Exception;
 
+   //获取待秒杀商品详情
+   ItemKill getKillDetail(Integer id) throws Exception;
+
 }

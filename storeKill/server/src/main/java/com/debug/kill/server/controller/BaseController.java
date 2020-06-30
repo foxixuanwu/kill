@@ -55,5 +55,10 @@ public class BaseController {
         return baseResponse;
     }
 
+    @GetMapping(value = "/error")
+    public String error(){
+        return "error";
+    }
+
 
 }

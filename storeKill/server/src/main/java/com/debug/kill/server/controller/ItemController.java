@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -46,6 +47,26 @@ public class ItemController {
             return "redirect:/base/error";
         }
         return "list";
+    }
+
+    /**
+     * 获取待秒杀商品的详情
+     * @return
+     */
+    @GetMapping(value = {prefix+"/detail/{id}"})
+    public String detail(@PathVariable Integer id,ModelMap modelMap){
+        if (id == null && id <=0) {
+            return "redirect:/base/error";
+        }
+        try {
+            ItemKill killDetail = itemService.getKillDetail(id);
+            modelMap.put("detail",killDetail);
+
+        }catch (Exception e){
+            logger.error("获取待秒杀商品详情-发生异常：id={}",id,e.fillInStackTrace());
+            return "redirect:/base/error";
+        }
+        return "info";
     }
 
 }
